@@ -42,11 +42,22 @@ RSpec.describe Board do
     it 'can select the content from a particular cell' do
       board = Board.new([['foo','bar'],['sna','fu']])
       expect(board.cell_selector(0,0)).to eq('foo')
-      expect(board.cell_selector(1,0)).to eq('bar')
-      expect(board.cell_selector(0,1)).to eq('sna')
+      expect(board.cell_selector(0,1)).to eq('bar')
+      expect(board.cell_selector(1,0)).to eq('sna')
       expect(board.cell_selector(1,1)).to eq('fu')
     end
   end
 
-  
+  describe '#cell_value' do
+    it 'updates the value of a given cell' do
+      value = 'X'
+      board = Board.new
+      board.cell_value(2,1,value)
+      expect(board.cell_selector(2,1).value).to eq('X')
+      expect(board.grid[2][1].value).to eq('X')
+      expect(board.grid[2][1]).to be_a(Cell)
+    end
+  end
+
+
 end

@@ -12,8 +12,12 @@ attr_accessor :grid
     Array.new(3) { Array.new(3) { Cell.new } }
   end
 
+  def cell_value(x,y,value)
+    cell_selector(x,y).value = value
+  end
+
   def cell_selector(x,y)
-    @grid[y][x]
+    @grid[x][y]
   end
 
 end

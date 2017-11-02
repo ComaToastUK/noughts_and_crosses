@@ -51,6 +51,19 @@
         1,
         null,
         null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/James/Projects/noughts_and_crosses/spec/cell_spec.rb": [
@@ -76,6 +89,6 @@
         null
       ]
     },
-    "timestamp": 1509629290
+    "timestamp": 1509629946
   }
 }
