@@ -33,18 +33,14 @@ subject(:game) { described_class.new }
 
   describe '#game_over' do
     it "returns :winner if winner? == true" do
-      subject.stub(winner?) { true }
       expect(subject.game_over).to eq :winner
     end
 
     it "returns :draw if draw? == true" do
-      subject.stub(draw?) { true }
       expect(subject.game_over).to eq :draw
     end
 
     it "returns false if draw? && winner? == false" do
-      subject.stub(winner?) { false }
-      subject.stub(draw?)   { false }
       expect(subject.game_over).to eq false
     end
   end
