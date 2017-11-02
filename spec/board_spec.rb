@@ -27,7 +27,26 @@ RSpec.describe Board do
       randomCell = [0,1,2].sample
       expect(board.grid[randomCell][randomCell]).to be_a(Cell)
     end
+
+    it 'has 9 elements' do
+      board = Board.new
+      a = 0
+      board.grid.each do |row|
+        a += row.length
+      end
+      expect(a).to eq(9)
+    end
   end
 
+  describe '#cell_selector' do
+    it 'can select the content from a particular cell' do
+      board = Board.new([['foo','bar'],['sna','fu']])
+      expect(board.cell_selector(0,0)).to eq('foo')
+      expect(board.cell_selector(1,0)).to eq('bar')
+      expect(board.cell_selector(0,1)).to eq('sna')
+      expect(board.cell_selector(1,1)).to eq('fu')
+    end
+  end
 
+  
 end

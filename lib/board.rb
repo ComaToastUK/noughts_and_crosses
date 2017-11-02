@@ -13,7 +13,7 @@ attr_accessor :grid
   end
 
   def cell_selector(x,y)
-    @grid[y,x]
+    @grid[y][x]
   end
 
 end
