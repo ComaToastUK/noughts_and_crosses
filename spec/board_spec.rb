@@ -1,63 +1,46 @@
 require './lib/board'
 
 RSpec.describe Board do
+
+subject(:board) { described_class.new }
+
   describe '#initialize' do
 
     it 'initializes with rows of 3' do
-      board = Board.new
-      board.grid.each do |row|
+      subject = Board.new
+      subject.grid.each do |row|
       expect(row.size).to eq(3)
      end
     end
 
     it 'initializes with 3 rows' do
-      board = Board.new
-      expect(board.grid.length).to eq(3)
+      subject = Board.new
+      expect(subject.grid.length).to eq(3)
     end
 
     it 'can be initialized with different configurations' do
-      board = Board.new(['foo','bar'])
-      expect(board.grid).to eq(['foo','bar'])
+      subject = Board.new(['foo','bar'])
+      expect(subject.grid).to eq(['foo','bar'])
     end
   end
 
   describe '#grid' do
     it 'is populated by Cells by default' do
-      board = Board.new
+      subject = Board.new
       randomCell = [0,1,2].sample
-      expect(board.grid[randomCell][randomCell]).to be_a(Cell)
+      expect(subject.grid[randomCell][randomCell]).to be_a(Cell)
     end
 
     it 'has 9 elements' do
-      board = Board.new
+      subject = Board.new
       a = 0
-      board.grid.each do |row|
+      subject.grid.each do |row|
         a += row.length
       end
       expect(a).to eq(9)
     end
   end
 
-  describe '#cell_selector' do
-    it 'can select the content from a particular cell' do
-      board = Board.new([['foo','bar'],['sna','fu']])
-      expect(board.cell_selector(0,0)).to eq('foo')
-      expect(board.cell_selector(0,1)).to eq('bar')
-      expect(board.cell_selector(1,0)).to eq('sna')
-      expect(board.cell_selector(1,1)).to eq('fu')
-    end
-  end
-
-  describe '#cell_value' do
-    it 'updates the value of a given cell' do
-      value = 'X'
-      board = Board.new
-      board.cell_value(2,1,value)
-      expect(board.cell_selector(2,1).value).to eq('X')
-      expect(board.grid[2][1].value).to eq('X')
-      expect(board.grid[2][1]).to be_a(Cell)
-    end
-  end
 
 
 end
