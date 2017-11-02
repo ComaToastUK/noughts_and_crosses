@@ -11,5 +11,10 @@ RSpec.describe Cell do
       cell = Cell.new('X')
       expect(cell.value).to eq('X')
     end
+
+    it "can be initialized with a value of 'O' " do
+      cell = Cell.new('O')
+      expect(cell.value).to eq('O')
+    end
  end
 end
