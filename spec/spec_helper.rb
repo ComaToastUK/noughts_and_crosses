@@ -1,4 +1,5 @@
 require 'simplecov'
+require './lib/game.rb'
 SimpleCov.start
 
 RSpec.configure do |config|
