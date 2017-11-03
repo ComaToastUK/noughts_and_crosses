@@ -2,25 +2,24 @@ require_relative 'board'
 require_relative 'player'
 
 class Game
-
-attr_accessor :board, :current_player, :other_player, :players
+  attr_accessor :board, :current_player, :other_player, :players
 
   def initialize(players)
-      @players = players
-      @board = Board.new
-      @current_player = players.first
-      @other_player = players.last
+    @players = players
+    @board = Board.new
+    @current_player = players.first
+    @other_player = players.last
   end
 
   def change_turn
     @current_player, @other_player = @other_player, @current_player
   end
 
-  def cell_value(x,y,value)
-    cell_selector(x,y).value = value
+  def cell_value(x, y, value)
+    cell_selector(x, y).value = value
   end
 
-  def cell_selector(x,y)
+  def cell_selector(x, y)
     @board.grid[x][y]
   end
 
@@ -43,7 +42,7 @@ attr_accessor :board, :current_player, :other_player, :players
   end
 
   def draw?
-    @board.grid.flatten.map { |cell| cell.value }.none_empty?
+    @board.grid.flatten.map(&:value).none_empty?
   end
 
   private
@@ -53,12 +52,11 @@ attr_accessor :board, :current_player, :other_player, :players
   end
 
   def winning_position_values(winning_position)
-    winning_position.map { |cell| cell.value }
+    winning_position.map(&:value)
   end
 
   def diagonal_positions
     [[cell_selector(0, 0), cell_selector(1, 1), cell_selector(2, 2)],
-    [cell_selector(0, 2), cell_selector(1, 1), cell_selector(2, 0)]]
+     [cell_selector(0, 2), cell_selector(1, 1), cell_selector(2, 0)]]
   end
-
 end

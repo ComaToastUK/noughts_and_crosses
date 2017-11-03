@@ -1,16 +1,14 @@
 require './lib/board'
 
 RSpec.describe Board do
-
-subject(:board) { described_class.new }
+  subject(:board) { described_class.new }
 
   describe '#initialize' do
-
     it 'initializes with rows of 3' do
       subject = Board.new
       subject.grid.each do |row|
-      expect(row.size).to eq(3)
-     end
+        expect(row.size).to eq(3)
+      end
     end
 
     it 'initializes with 3 rows' do
@@ -19,15 +17,15 @@ subject(:board) { described_class.new }
     end
 
     it 'can be initialized with different configurations' do
-      subject = Board.new(['foo','bar'])
-      expect(subject.grid).to eq(['foo','bar'])
+      subject = Board.new(%w[foo bar])
+      expect(subject.grid).to eq(%w[foo bar])
     end
   end
 
   describe '#grid' do
     it 'is populated by Cells by default' do
       subject = Board.new
-      randomCell = [0,1,2].sample
+      randomCell = [0, 1, 2].sample
       expect(subject.grid[randomCell][randomCell]).to be_a(Cell)
     end
 
@@ -40,7 +38,4 @@ subject(:board) { described_class.new }
       expect(a).to eq(9)
     end
   end
-
-
-
 end

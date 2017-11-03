@@ -16,5 +16,5 @@ RSpec.describe Cell do
       cell = Cell.new('O')
       expect(cell.value).to eq('O')
     end
- end
+  end
 end
