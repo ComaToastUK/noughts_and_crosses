@@ -2,10 +2,18 @@ require_relative 'board'
 
 class Game
 
-attr_accessor :board
+attr_accessor :board, :current_player, :other_player, :players
 
-  def initialize()
-    @board = Board.new()
+  def initialize(players)
+      @players = players
+      @board = Board.new
+      @current_player, @other_player = @players.shuffle
+  end
+
+  def change_turn
+    @current_player,
+    @other_player = @other_player,
+    @current_player
   end
 
   def cell_value(x,y,value)
