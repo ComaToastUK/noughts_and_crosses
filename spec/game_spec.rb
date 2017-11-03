@@ -1,7 +1,10 @@
 require './lib/game'
 
 RSpec.describe Game do
-subject(:game) { described_class.new(['Rick', 'Morty']) }
+let    (:rick)  { Player.new({team: "X", name: "Rick"})  }
+let    (:morty) { Player.new({team: "O", name: "Morty"}) }
+subject(:game)  { described_class.new([:rick, :morty]) }
+
 
   describe '#initialize' do
     it 'initializes with an empty subject board' do
@@ -10,11 +13,10 @@ subject(:game) { described_class.new(['Rick', 'Morty']) }
     end
 
     it 'chooses a random player' do
-      players = ['Rick', 'Morty']
-      game = Game.new(players)
-      allow(game.players).to receive(:shuffle).and_return(['Rick, Morty'])
-      expect(game.current_player).to eq('Rick')
-      expect(game.other_player).to eq('Morty')
+      players = [:rick, :morty]
+      game1 = Game.new([:rick, :morty])
+      expect(game1.current_player).to eq(:rick)
+      expect(game1.other_player).to eq(:morty)
     end
   end
 
@@ -43,7 +45,6 @@ subject(:game) { described_class.new(['Rick', 'Morty']) }
         allow(subject).to receive(:game_over).and_return(:winner)
         expect(subject.game_over).to eq :winner
       end
-    end
 
     it "returns :draw if draw? == true" do
       allow(subject).to receive(:game_over).and_return(:draw)
@@ -53,8 +54,18 @@ subject(:game) { described_class.new(['Rick', 'Morty']) }
     it "returns false if draw? && winner? == false" do
       expect(subject.game_over).to eq false
     end
+  end
 
   describe '#switch_players' do
-    it 'changes the value of other '
+    it 'changes the value of other_player to current_player' do
+      current_player = subject.current_player
+      other_player = subject.other_player
+      expect(game.current_player).to eq(:rick)
+      expect(game.other_player).to eq(:morty)
+      game.change_turn
+      expect(game.current_player).to eq(:morty)
+      expect(game.other_player).to eq(:rick)
+    end
   end
+
 end

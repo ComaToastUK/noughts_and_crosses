@@ -1,4 +1,5 @@
 require_relative 'board'
+require_relative 'player'
 
 class Game
 
@@ -7,13 +8,12 @@ attr_accessor :board, :current_player, :other_player, :players
   def initialize(players)
       @players = players
       @board = Board.new
-      @current_player, @other_player = @players.shuffle
+      @current_player = players.first
+      @other_player = players.last
   end
 
   def change_turn
-    @current_player,
-    @other_player = @other_player,
-    @current_player
+    @current_player, @other_player = @other_player, @current_player
   end
 
   def cell_value(x,y,value)
@@ -28,6 +28,10 @@ attr_accessor :board, :current_player, :other_player, :players
     return :winner if winner?
     return :draw   if draw?
     false
+  end
+
+  def random_player(players)
+    players.shuffle
   end
 
   def winner?
