@@ -16,3 +16,11 @@ A game is over when all fields are taken
 ### The task
 
 To build the business logic for the game and make it easy to implement a working game by combining the code with any user interface, whether it's web or command-line.
+
+### Progress
+
+I decided to revisit this today, it has 29 passing tests at present and needs only a little more work to plug in the command line ui and logic to run the game. The business logic is almost complete and I'm in the process of refactoring the game class some more as it's become a little heavier than I would like. The final class in progress is the Play class which will run the methods in a loop until a winner is declared.
+
+### Technology
+- Ruby 2.4.0
+- Tested with RSpec
