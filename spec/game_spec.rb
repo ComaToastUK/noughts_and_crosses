@@ -1,7 +1,7 @@
 require './lib/game'
 
 RSpec.describe Game do
-  let (:rick)  { Player.new(team: 'X', name: 'Rick') }
+  let    (:rick)  { Player.new(team: 'X', name: 'Rick') }
   let    (:morty) { Player.new(team: 'O', name: 'Morty') }
   subject(:game)  { described_class.new(%i[rick morty]) }
 
@@ -12,7 +12,6 @@ RSpec.describe Game do
     end
 
     it 'chooses a random player' do
-      players = %i[rick morty]
       game1 = Game.new(%i[rick morty])
       expect(game1.current_player).to eq(:rick)
       expect(game1.other_player).to eq(:morty)
@@ -57,13 +56,20 @@ RSpec.describe Game do
 
   describe '#switch_players' do
     it 'changes the value of other_player to current_player' do
-      current_player = subject.current_player
-      other_player = subject.other_player
       expect(game.current_player).to eq(:rick)
       expect(game.other_player).to eq(:morty)
       game.change_turn
       expect(game.current_player).to eq(:morty)
       expect(game.other_player).to eq(:rick)
+    end
+  end
+
+  describe "#get_move" do
+    it "converts player_move of '1' to [0, 0]" do
+      expect(game.get_move("1")).to eq [0, 0]
+    end
+    it "converts a player_move of 7 to [0, 2]" do
+      expect(game.get_move("7")).to eq [0, 2]
     end
   end
 end
